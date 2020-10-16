@@ -1,4 +1,4 @@
-# NAME TBD
+# thing
 
 - console application
 - create nix-aware new projects using templates and nix-tooling
