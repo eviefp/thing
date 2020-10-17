@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wno-partial-fields #-}
 
 module Command
-    ( Command(..)
+    ( Command (Create, List, Update)
     , getCommand
     ) where
 
@@ -26,4 +26,4 @@ data Command
   deriving anyclass OG.ParseRecord
 
 getCommand :: IO Command
-getCommand = OG.getRecord "nix-packages"
+getCommand = OG.getRecord "thing"

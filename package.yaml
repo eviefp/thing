@@ -41,6 +41,7 @@ default-extensions:
   - GADTs
   - GeneralizedNewtypeDeriving
   - InstanceSigs
+  - LambdaCase
   - MultiParamTypeClasses
   - NoImplicitPrelude
   - NoMonomorphismRestriction

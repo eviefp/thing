@@ -4,4 +4,8 @@ import Command as C
 import Prelude
 
 main :: IO ()
-main = C.getCommand >>= print
+main =
+    C.getCommand >>= \case
+        C.Create { name = n } -> putStrLn $ "Create " <> n
+        C.List            -> putstrLn "List"
+        C.Update { C.name = n } -> putstrLn $ "Update" <> n

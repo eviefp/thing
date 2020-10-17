@@ -30,7 +30,7 @@ library
       Paths_thing
   hs-source-dirs:
       src
-  default-extensions: BangPatterns ConstraintKinds DataKinds DeriveAnyClass DeriveDataTypeable DeriveGeneric DerivingStrategies EmptyDataDecls FlexibleContexts FlexibleInstances GADTs GeneralizedNewtypeDeriving InstanceSigs MultiParamTypeClasses NoImplicitPrelude NoMonomorphismRestriction OverloadedStrings QuasiQuotes RankNTypes RecordWildCards ScopedTypeVariables TemplateHaskell TupleSections TypeFamilies TypeOperators ViewPatterns
+  default-extensions: BangPatterns ConstraintKinds DataKinds DeriveAnyClass DeriveDataTypeable DeriveGeneric DerivingStrategies EmptyDataDecls FlexibleContexts FlexibleInstances GADTs GeneralizedNewtypeDeriving InstanceSigs LambdaCase MultiParamTypeClasses NamedFieldPuns NoImplicitPrelude NoMonomorphismRestriction OverloadedStrings QuasiQuotes RankNTypes RecordWildCards ScopedTypeVariables TemplateHaskell TupleSections TypeFamilies TypeOperators ViewPatterns
   ghc-options: -Weverything -Wno-missing-home-modules -Wno-redundant-constraints -Wno-missed-specialisations -Wno-all-missed-specialisations -Wno-missing-export-lists -Wno-missing-local-signatures -Wno-missing-exported-signatures -Wno-missing-import-lists -Wno-unsafe -Wno-safe -Wno-missing-local-signatures -Wno-monomorphism-restriction
   build-depends:
       aeson
@@ -47,7 +47,7 @@ executable thing
       Paths_thing
   hs-source-dirs:
       app
-  default-extensions: BangPatterns ConstraintKinds DataKinds DeriveAnyClass DeriveDataTypeable DeriveGeneric DerivingStrategies EmptyDataDecls FlexibleContexts FlexibleInstances GADTs GeneralizedNewtypeDeriving InstanceSigs MultiParamTypeClasses NoImplicitPrelude NoMonomorphismRestriction OverloadedStrings QuasiQuotes RankNTypes RecordWildCards ScopedTypeVariables TemplateHaskell TupleSections TypeFamilies TypeOperators ViewPatterns
+  default-extensions: BangPatterns ConstraintKinds DataKinds DeriveAnyClass DeriveDataTypeable DeriveGeneric DerivingStrategies EmptyDataDecls FlexibleContexts FlexibleInstances GADTs GeneralizedNewtypeDeriving InstanceSigs LambdaCase MultiParamTypeClasses NamedFieldPuns NoImplicitPrelude NoMonomorphismRestriction OverloadedStrings QuasiQuotes RankNTypes RecordWildCards ScopedTypeVariables TemplateHaskell TupleSections TypeFamilies TypeOperators ViewPatterns
   ghc-options: -Weverything -Wno-missing-home-modules -Wno-redundant-constraints -Wno-missed-specialisations -Wno-all-missed-specialisations -Wno-missing-export-lists -Wno-missing-local-signatures -Wno-missing-exported-signatures -Wno-missing-import-lists -Wno-unsafe -Wno-safe -Wno-missing-local-signatures -Wno-monomorphism-restriction -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson
@@ -66,7 +66,7 @@ test-suite thing-test
       Paths_thing
   hs-source-dirs:
       test
-  default-extensions: BangPatterns ConstraintKinds DataKinds DeriveAnyClass DeriveDataTypeable DeriveGeneric DerivingStrategies EmptyDataDecls FlexibleContexts FlexibleInstances GADTs GeneralizedNewtypeDeriving InstanceSigs MultiParamTypeClasses NoImplicitPrelude NoMonomorphismRestriction OverloadedStrings QuasiQuotes RankNTypes RecordWildCards ScopedTypeVariables TemplateHaskell TupleSections TypeFamilies TypeOperators ViewPatterns
+  default-extensions: BangPatterns ConstraintKinds DataKinds DeriveAnyClass DeriveDataTypeable DeriveGeneric DerivingStrategies EmptyDataDecls FlexibleContexts FlexibleInstances GADTs GeneralizedNewtypeDeriving InstanceSigs LambdaCase MultiParamTypeClasses NamedFieldPuns NoImplicitPrelude NoMonomorphismRestriction OverloadedStrings QuasiQuotes RankNTypes RecordWildCards ScopedTypeVariables TemplateHaskell TupleSections TypeFamilies TypeOperators ViewPatterns
   ghc-options: -Weverything -Wno-missing-home-modules -Wno-redundant-constraints -Wno-missed-specialisations -Wno-all-missed-specialisations -Wno-missing-export-lists -Wno-missing-local-signatures -Wno-missing-exported-signatures -Wno-missing-import-lists -Wno-unsafe -Wno-safe -Wno-missing-local-signatures -Wno-monomorphism-restriction -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson

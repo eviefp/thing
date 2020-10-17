@@ -1,13 +1,13 @@
 cradle:
   cabal:
     - path: "src"
-      component: "lib:nix-projects"
+      component: "lib:thing"
 
     - path: "app/Main.hs"
-      component: "nix-projects:exe:nix-projects"
+      component: "thing:exe:thing"
 
-    - path: "app/Paths_nix_projects.hs"
-      component: "nix-projects:exe:nix-projects"
+    - path: "app/Paths_thing.hs"
+      component: "thing:exe:thing"
 
     - path: "test"
-      component: "nix-projects:test:nix-projects-test"
+      component: "thing:test:thing-test"
