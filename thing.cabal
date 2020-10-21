@@ -25,6 +25,7 @@ source-repository head
 library
   exposed-modules:
       Command
+      CreateCommand
       Template
   other-modules:
       Paths_thing
@@ -35,6 +36,9 @@ library
   build-depends:
       aeson
     , base >=4.7 && <5
+    , directory
+    , extra
+    , filepath
     , glabrous
     , optparse-generic
     , text
@@ -52,6 +56,9 @@ executable thing
   build-depends:
       aeson
     , base >=4.7 && <5
+    , directory
+    , extra
+    , filepath
     , glabrous
     , optparse-generic
     , text
@@ -71,6 +78,9 @@ test-suite thing-test
   build-depends:
       aeson
     , base >=4.7 && <5
+    , directory
+    , extra
+    , filepath
     , glabrous
     , optparse-generic
     , text

@@ -22,6 +22,9 @@ description:         Please see the README on GitHub at <https://github.com/vlad
 dependencies:
 - base >= 4.7 && < 5
 - aeson
+- directory
+- extra
+- filepath
 - glabrous
 - optparse-generic
 - text
@@ -43,6 +46,7 @@ default-extensions:
   - InstanceSigs
   - LambdaCase
   - MultiParamTypeClasses
+  - NamedFieldPuns
   - NoImplicitPrelude
   - NoMonomorphismRestriction
   - OverloadedStrings

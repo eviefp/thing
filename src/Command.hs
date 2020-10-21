@@ -1,7 +1,7 @@
 {-# OPTIONS_GHC -Wno-partial-fields #-}
 
 module Command
-    ( Command (Create, List, Update)
+    ( Command (..)
     , getCommand
     ) where
 
@@ -16,11 +16,7 @@ import qualified Options.Generic as OG
 data Command
   = Create
       { name     :: Text
-      , template :: Text
-      }
-  | List
-  | Update
-      { name :: Text
+      , template :: String
       }
   deriving stock (Generic, Show)
   deriving anyclass OG.ParseRecord
