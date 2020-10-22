@@ -1,5 +1,7 @@
 let
-  sources = import ./nix/sources.nix;
-  tooling = import sources.nix-tooling;
+  sources = import ./nix;
+  tooling = sources.tooling;
+  pkgs = tooling.pkgs;
+  gis = sources.gis;
 in
-  tooling
+  pkgs.haskell.packages.ghc883.callCabal2nix "learn-brick" (gis.gitignoreSource ./.) {}

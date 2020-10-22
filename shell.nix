@@ -1,5 +1,5 @@
 let
-  tooling = import ./default.nix;
-  self = tooling.haskell.ghc884;
+  sources = import ./nix;
+  self = sources.tooling.haskell.ghc884;
 in
   self.shell
