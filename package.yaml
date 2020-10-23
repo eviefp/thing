@@ -26,7 +26,10 @@ dependencies:
 - extra
 - filepath
 - glabrous
+- lens
+- lens-process
 - optparse-generic
+- process
 - text
 - yaml
 

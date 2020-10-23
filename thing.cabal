@@ -40,7 +40,10 @@ library
     , extra
     , filepath
     , glabrous
+    , lens
+    , lens-process
     , optparse-generic
+    , process
     , text
     , yaml
   default-language: Haskell2010
@@ -60,7 +63,10 @@ executable thing
     , extra
     , filepath
     , glabrous
+    , lens
+    , lens-process
     , optparse-generic
+    , process
     , text
     , thing
     , yaml
@@ -82,7 +88,10 @@ test-suite thing-test
     , extra
     , filepath
     , glabrous
+    , lens
+    , lens-process
     , optparse-generic
+    , process
     , text
     , thing
     , yaml

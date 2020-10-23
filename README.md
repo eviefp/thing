@@ -7,7 +7,7 @@
 ## TODO
 - [ ] Create new project
     - [x] Basic project template
-    - [ ] Post-create hooks:
+    - [x] Post-create hooks:
               be able to run commands after template creation
               potentially via `nix-shell --command ...`
     - [ ] Grab templates from github in addition to local paths
