@@ -1,5 +1,7 @@
 module CreateCommand
     ( go
+    , Name (..)
+    , Template (..)
     ) where
 
 import           Control.Lens
@@ -30,33 +32,43 @@ import qualified System.Process         as Process
 import qualified System.Process.Lens    as LP
 import qualified Text.Glabrous          as G
 
-go :: Text -> String -> IO ()
+newtype Name = Name Text
+
+nameToString :: Name -> String
+nameToString (Name n) = T.unpack n
+
+newtype Template = Template
+    { unTemplate :: String
+    }
+
+go :: Name -> Template -> IO ()
 go name templatePath = do
     checkPreconditions name templatePath
     createProjectDir name
     templateFiles <- findAllTemplateFiles templatePath
     traverse_ (processFile name templatePath) templateFiles
-    executePostCreateHooks templatePath (T.unpack name)
+    executePostCreateHooks name templatePath
 
-checkPreconditions :: Text -> String -> IO ()
+checkPreconditions :: Name -> Template -> IO ()
 checkPreconditions name templatePath =
     (&&)
-        <$> (not <$> Dir.doesDirectoryExist (T.unpack name))
-        <*> Dir.doesDirectoryExist templatePath
+        <$> (not <$> Dir.doesDirectoryExist (nameToString name))
+        <*> Dir.doesDirectoryExist (unTemplate templatePath)
         >>= guard
 
-createProjectDir :: Text -> IO ()
-createProjectDir = Dir.createDirectory . T.unpack
+createProjectDir :: Name -> IO ()
+createProjectDir = Dir.createDirectory . nameToString
 
-findAllTemplateFiles :: String -> IO [String]
-findAllTemplateFiles path =
-    filter (not . (`elem` skipFiles))  <$> Extra.listFilesRecursive path
+findAllTemplateFiles :: Template -> IO [FilePath]
+findAllTemplateFiles templatePath =
+    filter (not . (`elem` skipFiles))
+        <$> Extra.listFilesRecursive (unTemplate templatePath)
   where
     skipFiles :: [String]
     skipFiles = [ "thing.template.yaml" ]
 
-processFile :: Text -> String -> String -> IO ()
-processFile name templatePath path = do
+processFile :: Name -> Template -> FilePath -> IO ()
+processFile (Name name) templatePath path = do
     template <- fromRight' <$> G.readTemplateFile path
     let
         name' = fromMaybe name $ T.stripSuffix "/" name
@@ -67,13 +79,13 @@ processFile name templatePath path = do
         G.Final t -> saveFile name templatePath path t
         _         -> error $ "Could not process file " <> path
 
-saveFile :: Text -> String -> String -> Text -> IO ()
+saveFile :: Text -> Template -> FilePath -> Text -> IO ()
 saveFile dir templatePath originalPath content = do
     let
         relativePath =
             fromJust
                 $ T.stripPrefix
-                    (T.pack templatePath)
+                    (T.pack $ unTemplate templatePath)
                     (T.pack originalPath)
         correctedRelativePath =
             fromMaybe relativePath $ T.stripPrefix "/" relativePath
@@ -82,11 +94,11 @@ saveFile dir templatePath originalPath content = do
     Dir.createDirectoryIfMissing True directory
     TIO.writeFile newPath content
 
-executePostCreateHooks :: String -> String -> IO ()
-executePostCreateHooks templatePath path = do
+executePostCreateHooks :: Name -> Template -> IO ()
+executePostCreateHooks name templatePath = do
     hooks <- hooks <$> readTemplateFile templatePath
     confirmHooks hooks >>= guard
-    traverse_ (performHook path) hooks
+    traverse_ (performHook name) hooks
 
 data TemplateFile
   = TemplateFile
@@ -99,8 +111,9 @@ data TemplateFile
 newtype Hook = Hook String
   deriving newtype (A.FromJSON, Show)
 
-readTemplateFile :: String -> IO TemplateFile
-readTemplateFile base = Yaml.decodeFileThrow $ base </> "thing.template.yaml"
+readTemplateFile :: Template -> IO TemplateFile
+readTemplateFile base =
+    Yaml.decodeFileThrow $ unTemplate base </> "thing.template.yaml"
 
 confirmHooks :: [Hook] -> IO Bool
 confirmHooks hooks = do
@@ -111,11 +124,13 @@ confirmHooks hooks = do
         "y" -> pure True
         _   -> pure False
 
-performHook :: String -> Hook -> IO ()
-performHook path (Hook hook) = do
+performHook :: Name -> Hook -> IO ()
+performHook name (Hook hook) = do
     let process = Process.shell hook
     currentDir <- Dir.getCurrentDirectory
-    let process' = process & LP.cwd_ ?~ (currentDir </> path)
+    let
+        process' =
+            process & LP.cwd_ ?~ (currentDir </> nameToString name)
     (_, _, _, handle) <- Process.createProcess process'
     _ <- Process.waitForProcess handle
     pure ()
