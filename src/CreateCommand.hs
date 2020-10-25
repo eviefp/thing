@@ -65,7 +65,7 @@ findAllTemplateFiles templatePath =
         <$> Extra.listFilesRecursive (unTemplate templatePath)
   where
     skipFiles :: [String]
-    skipFiles = [ "thing.template.yaml" ]
+    skipFiles = [ "thing.template.yaml", "src/.skip" ]
 
 processFile :: Name -> Template -> FilePath -> IO ()
 processFile (Name name) templatePath path = do
