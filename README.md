@@ -10,7 +10,7 @@
     - [x] Post-create hooks:
               be able to run commands after template creation
               potentially via `nix-shell --command ...`
-    - [ ] Grab templates from github in addition to local paths
+    - [x] Grab templates from github in addition to local paths
     - [ ] Extra attributes read from env or `~/.thing.yaml`
               e.g. github URL, name, etc. (fill in in `package.yaml`)
 

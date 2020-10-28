@@ -8,4 +8,4 @@ main :: IO ()
 main =
     C.getCommand >>= \case
         C.Create { name, template} ->
-            CC.go (CC.Name name) (CC.Template template)
+            CC.go (CC.Name name) template

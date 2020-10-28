@@ -36,16 +36,20 @@ library
   build-depends:
       aeson
     , base >=4.7 && <5
+    , bytestring
     , directory
     , extra
     , filepath
+    , github
     , glabrous
     , lens
     , lens-process
     , optparse-generic
     , process
+    , req
     , text
     , yaml
+    , zip-archive
   default-language: Haskell2010
 
 executable thing
@@ -59,17 +63,21 @@ executable thing
   build-depends:
       aeson
     , base >=4.7 && <5
+    , bytestring
     , directory
     , extra
     , filepath
+    , github
     , glabrous
     , lens
     , lens-process
     , optparse-generic
     , process
+    , req
     , text
     , thing
     , yaml
+    , zip-archive
   default-language: Haskell2010
 
 test-suite thing-test
@@ -84,15 +92,19 @@ test-suite thing-test
   build-depends:
       aeson
     , base >=4.7 && <5
+    , bytestring
     , directory
     , extra
     , filepath
+    , github
     , glabrous
     , lens
     , lens-process
     , optparse-generic
     , process
+    , req
     , text
     , thing
     , yaml
+    , zip-archive
   default-language: Haskell2010

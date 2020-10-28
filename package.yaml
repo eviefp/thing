@@ -22,16 +22,20 @@ description:         Please see the README on GitHub at <https://github.com/vlad
 dependencies:
 - base >= 4.7 && < 5
 - aeson
+- bytestring
 - directory
 - extra
 - filepath
+- github
 - glabrous
 - lens
 - lens-process
 - optparse-generic
 - process
+- req
 - text
 - yaml
+- zip-archive
 
 default-extensions:
   - BangPatterns
