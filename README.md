@@ -11,6 +11,7 @@
               be able to run commands after template creation
               potentially via `nix-shell --command ...`
     - [x] Grab templates from github in addition to local paths
+    - [ ] Migrate existing projects
     - [ ] Extra attributes read from env or `~/.thing.yaml`
               e.g. github URL, name, etc. (fill in in `package.yaml`)
 
